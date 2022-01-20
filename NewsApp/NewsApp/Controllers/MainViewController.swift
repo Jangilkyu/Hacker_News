@@ -11,6 +11,9 @@ import UIKit
 private let MainCellId = "MainCellId"
 
 class MainViewController : UIViewController {
+    
+    var storyIDs: [Int] = []
+    
     let homeLabel: UILabel = {
         let homeLabel = UILabel()
         homeLabel.text = "Home"
@@ -39,6 +42,7 @@ class MainViewController : UIViewController {
         
         setup()
         setConstraints()
+        fetchData()
     }
     
     func setup() {
@@ -73,6 +77,34 @@ class MainViewController : UIViewController {
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
+    func fetchData() {
+        guard let url = URL(string: "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: url) {
+            data, response, error in
+            
+            guard error == nil,
+                let httpResponse = (response as? HTTPURLResponse),
+                httpResponse.statusCode == 200,
+                
+                let data = data,
+                let decoded = try? JSONDecoder().decode([Int].self, from: data) else { return }
+                self.storyIDs = decoded
+            
+                print(self.storyIDs)
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+        }
+        
+        dataTask.resume()
+    }
+    
 }
 
 extension MainViewController :
@@ -84,7 +116,7 @@ extension MainViewController :
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 10
+        return storyIDs.count
     }
     
     
@@ -96,6 +128,8 @@ extension MainViewController :
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: MainCellId,
             for: indexPath) as? MainCell else { return UICollectionViewCell() }
+        
+        cell.storyIDsLabel.text = "\(storyIDs[indexPath.item])"
         return cell
     }
             
@@ -105,7 +139,7 @@ extension MainViewController :
         layout collectionVIewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
+        return CGSize(width: view.frame.width - 15, height: 100)
     }
 
 }
