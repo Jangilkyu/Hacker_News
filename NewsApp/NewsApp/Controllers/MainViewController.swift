@@ -13,6 +13,7 @@ private let MainCellId = "MainCellId"
 class MainViewController : UIViewController {
     
     var storyIDs: [Int] = []
+    var restProcessor: RestProcessor!
     
     let homeLabel: UILabel = {
         let homeLabel = UILabel()
@@ -27,7 +28,7 @@ class MainViewController : UIViewController {
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        collectionView.backgroundColor = .red
+        
         return collectionView
     }()
     
@@ -37,17 +38,25 @@ class MainViewController : UIViewController {
         collectionView.dataSource = self
     }
     
+    func setConfigureRestProcessor() {
+        restProcessor = RestProcessor()
+        // restProcessor nil이 되면 메모리 해제됨
+        restProcessor.delegate = self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
-        setConstraints()
-        fetchData()
+        fetchTopStories()
     }
     
     func setup() {
         view.backgroundColor = .white
         addViews()
+        setConstraints()
+        setConfigureCollectionView()
+        setConfigureRestProcessor()
     }
     
     func addViews() {
@@ -58,7 +67,6 @@ class MainViewController : UIViewController {
     func setConstraints() {
         homeLabelConstraints()
         collectionViewConstarints()
-        setConfigureCollectionView()
     }
     
     func homeLabelConstraints() {
@@ -77,32 +85,8 @@ class MainViewController : UIViewController {
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
-    func fetchData() {
-        guard let url = URL(string: "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty") else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: url) {
-            data, response, error in
-            
-            guard error == nil,
-                let httpResponse = (response as? HTTPURLResponse),
-                httpResponse.statusCode == 200,
-                
-                let data = data,
-                let decoded = try? JSONDecoder().decode([Int].self, from: data) else { return }
-                self.storyIDs = decoded
-            
-                print(self.storyIDs)
-                
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-        }
-        
-        dataTask.resume()
+    func fetchTopStories() {
+        restProcessor.fetchData(urlString: ProjectURL.topStories.description, usage: .topStories)
     }
     
 }
@@ -130,6 +114,7 @@ extension MainViewController :
             for: indexPath) as? MainCell else { return UICollectionViewCell() }
         
         cell.storyIDsLabel.text = "\(storyIDs[indexPath.item])"
+
         return cell
     }
             
@@ -141,5 +126,34 @@ extension MainViewController :
     ) -> CGSize {
         return CGSize(width: view.frame.width - 15, height: 100)
     }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        let selectedItem = storyIDs[indexPath.item]
+        print(selectedItem)
+    }
 
+}
+
+extension MainViewController: RestProcessorDelegate {
+    func didSucessWith(data: Data, response: URLResponse, usage: ProjectURL) {
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { return }
+        
+        switch usage {
+        case .topStories:
+            guard let decoded = try? JSONDecoder().decode([Int].self, from: data) else { return}
+            self.storyIDs = decoded
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    func didFailwith(error: Error?, response: URLResponse?, usage: ProjectURL) {
+        
+    }
+    
+    
 }

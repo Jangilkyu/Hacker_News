@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D744926427999B3A00C2473C /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744926327999B3A00C2473C /* ColorTheme.swift */; };
+		D7680C88279C2DBB00D3A16F /* RestProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7680C87279C2DBB00D3A16F /* RestProcessor.swift */; };
+		D7680C8A279C2E4F00D3A16F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7680C89279C2E4F00D3A16F /* Constant.swift */; };
 		D7681723278C57E600482F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7681722278C57E600482F27 /* AppDelegate.swift */; };
 		D7681725278C57E600482F27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7681724278C57E600482F27 /* SceneDelegate.swift */; };
 		D768172C278C57E800482F27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D768172B278C57E800482F27 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		D744926327999B3A00C2473C /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		D7680C87279C2DBB00D3A16F /* RestProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProcessor.swift; sourceTree = "<group>"; };
+		D7680C89279C2E4F00D3A16F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D768171F278C57E600482F27 /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7681722278C57E600482F27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7681724278C57E600482F27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +46,7 @@
 		D744925D2799979900C2473C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D7680C87279C2DBB00D3A16F /* RestProcessor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -66,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				D744926327999B3A00C2473C /* ColorTheme.swift */,
+				D7680C89279C2E4F00D3A16F /* Constant.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -172,6 +178,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7680C8A279C2E4F00D3A16F /* Constant.swift in Sources */,
+				D7680C88279C2DBB00D3A16F /* RestProcessor.swift in Sources */,
 				D7681723278C57E600482F27 /* AppDelegate.swift in Sources */,
 				D744926427999B3A00C2473C /* ColorTheme.swift in Sources */,
 				D7681725278C57E600482F27 /* SceneDelegate.swift in Sources */,
