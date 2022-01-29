@@ -133,6 +133,9 @@ extension MainViewController :
     ) {
         let selectedItem = storyIDs[indexPath.item]
         print(selectedItem)
+        
+        let svc = StoryViewController(selectedItem, restProcessor)
+        navigationController?.pushViewController(svc, animated: true)
     }
 
 }
@@ -142,12 +145,14 @@ extension MainViewController: RestProcessorDelegate {
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { return }
         
         switch usage {
-        case .topStories:
-            guard let decoded = try? JSONDecoder().decode([Int].self, from: data) else { return}
-            self.storyIDs = decoded
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+            case .topStories:
+                guard let decoded = try? JSONDecoder().decode([Int].self, from: data) else { return}
+                self.storyIDs = decoded
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            default:
+                break
         }
     }
     

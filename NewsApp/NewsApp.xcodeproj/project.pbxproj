@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D70DD9D127A5845900B04F51 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DD9D027A5845900B04F51 /* MainNavigationController.swift */; };
+		D70DD9D327A5855800B04F51 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DD9D227A5855800B04F51 /* StoryViewController.swift */; };
+		D70DD9D527A588DE00B04F51 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DD9D427A588DE00B04F51 /* Story.swift */; };
 		D744926427999B3A00C2473C /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744926327999B3A00C2473C /* ColorTheme.swift */; };
 		D7680C88279C2DBB00D3A16F /* RestProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7680C87279C2DBB00D3A16F /* RestProcessor.swift */; };
 		D7680C8A279C2E4F00D3A16F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7680C89279C2E4F00D3A16F /* Constant.swift */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D70DD9D027A5845900B04F51 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		D70DD9D227A5855800B04F51 /* StoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
+		D70DD9D427A588DE00B04F51 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		D744926327999B3A00C2473C /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		D7680C87279C2DBB00D3A16F /* RestProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProcessor.swift; sourceTree = "<group>"; };
 		D7680C89279C2E4F00D3A16F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -47,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				D7680C87279C2DBB00D3A16F /* RestProcessor.swift */,
+				D70DD9D427A588DE00B04F51 /* Story.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -63,6 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				D793812727929FBB003E5184 /* MainViewController.swift */,
+				D70DD9D027A5845900B04F51 /* MainNavigationController.swift */,
+				D70DD9D227A5855800B04F51 /* StoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -180,11 +189,14 @@
 			files = (
 				D7680C8A279C2E4F00D3A16F /* Constant.swift in Sources */,
 				D7680C88279C2DBB00D3A16F /* RestProcessor.swift in Sources */,
+				D70DD9D127A5845900B04F51 /* MainNavigationController.swift in Sources */,
+				D70DD9D327A5855800B04F51 /* StoryViewController.swift in Sources */,
 				D7681723278C57E600482F27 /* AppDelegate.swift in Sources */,
 				D744926427999B3A00C2473C /* ColorTheme.swift in Sources */,
 				D7681725278C57E600482F27 /* SceneDelegate.swift in Sources */,
 				D793812A2792A32A003E5184 /* MainCell.swift in Sources */,
 				D793812827929FBB003E5184 /* MainViewController.swift in Sources */,
+				D70DD9D527A588DE00B04F51 /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
