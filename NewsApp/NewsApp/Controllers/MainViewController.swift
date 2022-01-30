@@ -148,6 +148,7 @@ extension MainViewController: RestProcessorDelegate {
             case .topStories:
                 guard let decoded = try? JSONDecoder().decode([Int].self, from: data) else { return}
                 self.storyIDs = decoded
+                
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }

@@ -10,11 +10,13 @@ import Foundation
 struct Story: Codable {
     let title: String
     let type: String
-    let url: String
+    let url: String?
+    let text: String?
     
     enum CodingKeys: String, CodingKey {
         case title = "title"
         case type = "type"
         case url = "url"
+        case text = "text"
     }
 }
