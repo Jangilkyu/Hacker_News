@@ -43,6 +43,7 @@ class StoryViewController: UIViewController {
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        webView.addSpinner()
     }
     
     func addTextView() {

@@ -19,6 +19,7 @@
 		D768172F278C57E800482F27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D768172D278C57E800482F27 /* LaunchScreen.storyboard */; };
 		D793812827929FBB003E5184 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D793812727929FBB003E5184 /* MainViewController.swift */; };
 		D793812A2792A32A003E5184 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79381292792A32A003E5184 /* MainCell.swift */; };
+		D7B2FAAD27A67F5500787078 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B2FAAC27A67F5500787078 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D7681730278C57E800482F27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D793812727929FBB003E5184 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D79381292792A32A003E5184 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		D7B2FAAC27A67F5500787078 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				D744926327999B3A00C2473C /* ColorTheme.swift */,
 				D7680C89279C2E4F00D3A16F /* Constant.swift */,
+				D7B2FAAC27A67F5500787078 /* Extension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				D7680C88279C2DBB00D3A16F /* RestProcessor.swift in Sources */,
 				D70DD9D127A5845900B04F51 /* MainNavigationController.swift in Sources */,
 				D70DD9D327A5855800B04F51 /* StoryViewController.swift in Sources */,
+				D7B2FAAD27A67F5500787078 /* Extension.swift in Sources */,
 				D7681723278C57E600482F27 /* AppDelegate.swift in Sources */,
 				D744926427999B3A00C2473C /* ColorTheme.swift in Sources */,
 				D7681725278C57E600482F27 /* SceneDelegate.swift in Sources */,
