@@ -68,6 +68,7 @@ class StoryViewController: UIViewController {
     
     func configureWebView() {
         webView.uiDelegate = self
+        webView.navigationDelegate = self
     }
     
     func configureRestProcessor() {
@@ -118,6 +119,13 @@ extension StoryViewController: RestProcessorDelegate {
 }
 
 extension StoryViewController:
-    WKUIDelegate {
-        
+    WKUIDelegate, WKNavigationDelegate {
+    func webView(
+        _ webView: WKWebView,
+        didFinish navigation: WKNavigation!
+    ) {
+        print("did load")
+        webView.removeSpinner()
+    }
+    
 }

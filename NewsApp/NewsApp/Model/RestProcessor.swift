@@ -48,4 +48,30 @@ class RestProcessor {
         dataTask.resume()
     }
     
+
+    func fetchSingleItem(
+        urlString: String,
+        complection: @escaping (Result<Data, Error>) -> Void) {
+            guard let url = URL(string: urlString) else { return }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            
+            let session = URLSession.shared
+            
+            let dataTask = session.dataTask(with: request) { data, response, error in
+                
+                guard error == nil,
+                      let httpResponse = (response as? HTTPURLResponse),
+                      httpResponse.statusCode == 200,
+                      let data = data else {
+                          complection(.failure(error!))
+                          return
+                      }
+                complection(.success(data))
+            }
+            dataTask.resume()
+        }
+    
+    
 }

@@ -113,7 +113,17 @@ extension MainViewController :
             withReuseIdentifier: MainCellId,
             for: indexPath) as? MainCell else { return UICollectionViewCell() }
         
-        cell.storyIDsLabel.text = "\(storyIDs[indexPath.item])"
+        restProcessor.fetchSingleItem(urlString: ProjectURL.getStory(itemNumber: storyIDs[indexPath.item]).description) { result in
+            guard let data = try? result.get() else { return }
+            guard let decoded = try? JSONDecoder().decode(Story.self, from: data) else { return }
+            DispatchQueue.main.async {
+                cell.storyIDsLabel.text = decoded.title
+                print(decoded.url)
+                print(self.storyIDs[indexPath.item])
+            }
+        }
+        
+//        cell.storyIDsLabel.text = "\(storyIDs[indexPath.item])"
 
         return cell
     }

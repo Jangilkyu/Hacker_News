@@ -12,6 +12,7 @@ extension UIView {
     func addSpinner() {
         let background = UIView()
         addSubview(background)
+        background.tag = 0001
         background.backgroundColor = .init(white: 0, alpha: 0.7)
         background.translatesAutoresizingMaskIntoConstraints = false
         background.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -22,6 +23,7 @@ extension UIView {
         let spinner = UIActivityIndicatorView()
         spinner.startAnimating()
         addSubview(spinner)
+        spinner.tag = 0002
         spinner.color = .systemPink
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.widthAnchor.constraint(equalToConstant: 500).isActive = true
@@ -30,6 +32,22 @@ extension UIView {
         spinner.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
+    func removeSpinner() {
+        let views = subviews.filter { view in
+            return view.tag == 0001 || view.tag == 0002
+        }
+        
+        views.forEach { view in
+            view.removeAllConstraints()
+            view.removeFromSuperview()
+        }
+    }
     
+    func removeAllConstraints() {
+        self.removeConstraints(self.constraints)
+        for view in self.subviews {
+            view.removeAllConstraints()
+        }
+    }
     
 }
