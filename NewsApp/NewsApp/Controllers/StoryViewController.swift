@@ -15,7 +15,8 @@ class StoryViewController: UIViewController {
     var restProcessor: RestProcessor!
     
     convenience init(_ storyId: Int,
-                     _ restProcessor: RestProcessor) {
+                     _ restProcessor: RestProcessor
+    ) {
         self.init()
         self.storyId = storyId
         self.restProcessor = restProcessor

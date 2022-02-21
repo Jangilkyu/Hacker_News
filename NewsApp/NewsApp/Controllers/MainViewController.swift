@@ -15,16 +15,6 @@ class MainViewController : UIViewController {
     var storyIDs: [Int] = []
     var restProcessor: RestProcessor!
     
-    let homeLabel: UILabel = {
-        let homeLabel = UILabel()
-        homeLabel.text = "Home"
-        homeLabel.textAlignment = .center
-        homeLabel.font = .systemFont(ofSize: 30)
-        homeLabel.textColor = .black
-        
-        return homeLabel
-    }()
-    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -47,6 +37,8 @@ class MainViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Hacker News"
+        self.navigationController?.navigationBar.backgroundColor = .red
         setup()
         fetchTopStories()
     }
@@ -60,26 +52,16 @@ class MainViewController : UIViewController {
     }
     
     func addViews() {
-        view.addSubview(homeLabel)
         view.addSubview(collectionView)
     }
     
     func setConstraints() {
-        homeLabelConstraints()
         collectionViewConstarints()
     }
     
-    func homeLabelConstraints() {
-        homeLabel.translatesAutoresizingMaskIntoConstraints = false
-        homeLabel.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        homeLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        homeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        homeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-    }
-
     func collectionViewConstarints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: homeLabel.bottomAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -116,16 +98,28 @@ extension MainViewController :
         restProcessor.fetchSingleItem(urlString: ProjectURL.getStory(itemNumber: storyIDs[indexPath.item]).description) { result in
             guard let data = try? result.get() else { return }
             guard let decoded = try? JSONDecoder().decode(Story.self, from: data) else { return }
+//            print(self.)
+            
             DispatchQueue.main.async {
                 cell.storyIDsLabel.text = decoded.title
-                print(decoded.url)
-                print(self.storyIDs[indexPath.item])
+                cell.authorByLabel.text = "by \(decoded.by)"
+                cell.timeLabel.text = "\(self.IntToDate(decoded.time))"
             }
         }
-        
-//        cell.storyIDsLabel.text = "\(storyIDs[indexPath.item])"
 
         return cell
+    }
+    
+    func IntToDate(_ time: Int) -> String {
+        let timeInterval = TimeInterval(time)
+        let myNSDate = Date(timeIntervalSince1970: timeInterval)
+                
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//        dateFormatter.locale = Locale.current
+        let convertStr = dateFormatter.string(from: myNSDate)
+        
+        return convertStr
     }
             
             

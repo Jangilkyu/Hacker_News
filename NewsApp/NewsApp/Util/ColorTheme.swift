@@ -9,11 +9,17 @@ import UIKit
 
 enum ColorTheme {
     case lightYellow
+    case lightGray
+    case timeGray
     
     var color: UIColor {
         switch self {
-        case .lightYellow:
-            return UIColor(r: 244, g: 189, b: 117)
+            case .lightYellow:
+                return UIColor(r: 244, g: 189, b: 117)
+            case .lightGray:
+                return UIColor(r: 190, g: 190, b: 190)
+            case .timeGray:
+                return UIColor(r: 177, g: 177, b: 177)
         }
     }
 }
